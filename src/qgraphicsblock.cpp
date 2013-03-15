@@ -8,11 +8,16 @@ QGraphicsBlock::QGraphicsBlock(QObject *parent) :
     m_edge(5, 5),
     m_inputs(2),
     m_outputs(2),
-    m_inputOffset(30)
+    m_inputOffset(30),
+    m_backgroundColor(245, 245, 245)
 {
     setFlag(ItemIsMovable);
     m_hovered = false;
     setAcceptHoverEvents(true);
+}
+
+QGraphicsBlock::~QGraphicsBlock()
+{
 }
 
 QRectF QGraphicsBlock::boundingRect() const
@@ -23,7 +28,7 @@ QRectF QGraphicsBlock::boundingRect() const
 void QGraphicsBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->setPen(QPen(Qt::NoPen));
-    painter->setBrush(QBrush(m_hovered ? Qt::lightGray : Qt::white));
+    painter->setBrush(QBrush(m_hovered ? m_backgroundColor : Qt::white));
     painter->drawRoundedRect(m_rect, 5, 5);
     painter->setPen(QPen(Qt::black));
     //    painter->drawText(-20, -30, "test block");
