@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include "Scene.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,7 +19,11 @@ public:
     
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene m_scene;
+    Scene m_scene;
+
+private slots:
+    void inputClicked(int id);
+    void outputClicked(int id);
 };
 
 #endif // MAINWINDOW_H

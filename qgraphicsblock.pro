@@ -16,8 +16,10 @@ include(qgraphicsblock.pri)
 INCLUDEPATH += test
 
 SOURCES += test/main.cpp\
-        test/MainWindow.cpp
+        test/MainWindow.cpp \
+    test/Scene.cpp
 
-HEADERS  += test/MainWindow.h
+HEADERS  += test/MainWindow.h \
+    test/Scene.h
 
 FORMS    += test/MainWindow.ui
