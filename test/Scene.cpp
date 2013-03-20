@@ -32,6 +32,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if(m_line){
         QLineF line = m_line->line();
         line.setP2(event->scenePos());
+        line.setLength(line.length() - 1);
         m_line->setLine(line);
     }
 }
