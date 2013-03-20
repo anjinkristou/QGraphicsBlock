@@ -10,7 +10,9 @@ Scene::Scene(QObject *parent) :
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    QGraphicsScene::mousePressEvent(event);
+    if (event->button() != Qt::LeftButton)
+            return;
+
     QGraphicsBlock *item;
     item = dynamic_cast<QGraphicsBlock *>(itemAt(event->scenePos())); //Get the item at the position
     if (item) //If there is an item at that position
@@ -24,22 +26,22 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             m_line->setLine(QLineF(inputPos, inputPos));
         }
     }
+    QGraphicsScene::mousePressEvent(event);
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    QGraphicsScene::mouseMoveEvent(event);
     if(m_line){
         QLineF line = m_line->line();
         line.setP2(event->scenePos());
         line.setLength(line.length() - 1);
         m_line->setLine(line);
     }
+    QGraphicsScene::mouseMoveEvent(event);
 }
 
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    QGraphicsScene::mouseReleaseEvent(event);
     if(m_line){
         QGraphicsBlock *item;
         item = dynamic_cast<QGraphicsBlock *>(itemAt(event->scenePos())); //Get the item at the position
@@ -60,4 +62,5 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         delete m_line;
         m_line = NULL;
     }
+    QGraphicsScene::mouseReleaseEvent(event);
 }
